@@ -1,11 +1,22 @@
-// interface Point {
-//     x: number,
-//     y: number
-// }
+// 基础类型  null undefined symbol boolean void
+const count: number = 123
+const teacherName: string = 'Dell'
 
-// const point: Point = {
-//     x: 3,
-//     y: 4
-// };
+// 对象类型
+class Person {}
 
-// point.x
+const teacher: {
+  name: string
+  age: number
+} = {
+  name: 'Dell',
+  age: 18
+}
+
+const numbers: number[] = [1, 2, 3]
+
+const dell: Person = new Person()
+
+const getTotal: () => number = () => {
+  return 123
+}
