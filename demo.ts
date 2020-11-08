@@ -1,10 +1,14 @@
-interface Point {x: number, y: number};
-
-function tsDemo(data: Point){
-    return Math.sqrt(data.x ** 2 + data.y ** 2);
+interface Point {
+  x: number
+  y: number
 }
 
-tsDemo({x: 1, y: 123});
+function tsDemo(data: Point) {
+  console.log('Dell ts')
+  return Math.sqrt(data.x ** 2 + data.y ** 2)
+}
+
+tsDemo({ x: 1, y: 123 })
 
 // typescript优势：
 // 1.开发过程中，发现潜在问题
