@@ -1,22 +1,29 @@
-// function add(first: number, second: number): number {
-//   return first + second
-// }
+const arr: (number | string)[] = [1, '2', 3];
+const stringArr: string[] = ['a', 'b', 'c'];
+const undefinedArr: undefined[] = [undefined, undefined];
 
-// function sayHello(): void {
-//   console.log('hello')
-// }
+// type alias 类型别名
+type User = { name: string; age: number };
 
-// function errorEmitter(): never {
-//   throw new Error()
-// }
-
-function add({ first, second }: { first: number; second: number }): number {
-  return first + second
+class Teacher {
+  name: string;
+  age: number;
 }
 
-function getNumber({ first }: { first: number }) {
-  return first
-}
+const objectArr: Teacher[] = [
+  new Teacher(),
+  {
+    name: 'dell',
+    age: 28
+  }
+];
 
-const total = add({ first: 1, second: 2 })
-const count = getNumber({ first: 1 })
+// 元组 tuple
+const teacherInfo: [string, string, number] = ['Dell', 'male', 18];
+
+// csv
+const teacherList: [string, string, number][] = [
+  ['Dell', 'male', 18],
+  ['Jenny', 'female', 28],
+  ['sumny', 'male', 38]
+];
