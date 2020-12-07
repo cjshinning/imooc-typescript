@@ -1,29 +1,49 @@
-const arr: (number | string)[] = [1, '2', 3];
-const stringArr: string[] = ['a', 'b', 'c'];
-const undefinedArr: undefined[] = [undefined, undefined];
-
-// type alias 类型别名
-type User = { name: string; age: number };
-
-class Teacher {
+// interface 和 type 相类似，但并不完全一致
+interface Person {
+  // readonly name: string;
   name: string;
-  age: number;
+  age?: number;
+  [propName: string]: any;
+  say(): string;
 }
 
-const objectArr: Teacher[] = [
-  new Teacher(),
-  {
-    name: 'dell',
-    age: 28
+interface Teacher extends Person {
+  teach(): string;
+}
+
+interface SayHi {
+  (word: string): string;
+}
+
+const getPersonName = (person: Person): void => {
+  console.log(person.name);
+};
+
+const setPersonName = (person: Teacher, name: string): void => {
+  person.name = name;
+};
+
+const person = {
+  name: 'Jenny',
+  sex: 'male',
+  say() {
+    return 'say hello';
+  },
+  teach() {
+    return 'teach';
   }
-];
+};
 
-// 元组 tuple
-const teacherInfo: [string, string, number] = ['Dell', 'male', 18];
+getPersonName(person);
+setPersonName(person, 'lee');
 
-// csv
-const teacherList: [string, string, number][] = [
-  ['Dell', 'male', 18],
-  ['Jenny', 'female', 28],
-  ['sumny', 'male', 38]
-];
+class User implements Person {
+  name = 'jenny';
+  say() {
+    return 'hello';
+  }
+}
+
+const say: SayHi = (word: string) => {
+  return 'word';
+};
