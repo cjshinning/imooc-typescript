@@ -1,32 +1,59 @@
+// readonly
 // class Person {
-//   constructor(private _name: string = '') {}
-//   get name() {
-//     return this._name + ' chan';
-//   }
-//   set name(name: string) {
-//     const realName = name.split(' ')[0];
-//     this._name = realName;
+//   public readonly name: string;
+//   constructor( name: string) {
+//     this.name = name;
 //   }
 // }
 
-// const person = new Person('jenny');
-// console.log(person.name);
-// person.name = 'jenny chan';
+// const person = new Person('Dell');
+// person.name = 'hello';
 // console.log(person.name);
 
-class Demo {
-  private static instance: Demo;
-  private constructor(public name: string) {}
+// 抽象类
+// abstract class Geom {
+//   getType() {
+//     return 'Gemo';
+//   }
+//   abstract getArea(): number;
+// }
 
-  public static getInstance() {
-    if (!this.instance) {
-      this.instance = new Demo('jenny chan');
-    }
-    return this.instance;
-  }
+// class Circle extends Geom {
+//   getArea() {
+//     return 123;
+//   }
+// }
+
+// class Square {}
+
+// class Triangle {}
+
+// 接口回顾
+interface Person {
+  name: string;
 }
 
-const demo1 = Demo.getInstance();
-const demo2 = Demo.getInstance();
-console.log(demo1.name);
-console.log(demo2.name);
+interface Teacher extends Person {
+  teachingAge: number;
+}
+
+interface Student extends Person {
+  age: number;
+}
+
+const teacher = {
+  name: 'Jenny',
+  teachingAge: 3
+};
+
+const student = {
+  name: 'Chan',
+  age: 18
+};
+
+const getUserInfo = (user: Person) => {
+  console.log(user.name);
+};
+
+getUserInfo(teacher);
+getUserInfo(student);
