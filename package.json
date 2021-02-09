@@ -1,0 +1,26 @@
+{
+  "name": "imooc-typescript",
+  "version": "1.0.0",
+  "description": "learning typescript",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node ./src/crawller.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjshinning/imooc-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjshinning/imooc-typescript/issues"
+  },
+  "homepage": "https://github.com/cjshinning/imooc-typescript#readme",
+  "devDependencies": {
+    "@types/superagent": "^4.1.10",
+    "superagent": "^6.1.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
