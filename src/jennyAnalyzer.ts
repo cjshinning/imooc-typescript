@@ -17,6 +17,15 @@ interface Content {
 }
 
 export default class JennyAnalyzer implements Analyzer {
+  private static instance: JennyAnalyzer;
+
+  static getInstance() {
+    if (!JennyAnalyzer.instance) {
+      JennyAnalyzer.instance = new JennyAnalyzer();
+    }
+    return JennyAnalyzer.instance;
+  }
+
   private getCourseInfo(html: string) {
     const $ = cheerio.load(html);
     const courseItems = $('.course-item');
@@ -39,7 +48,7 @@ export default class JennyAnalyzer implements Analyzer {
     };
   }
 
-  generateJsonContent(courseInfo: CourseResult, filePath: string) {
+  private generateJsonContent(courseInfo: CourseResult, filePath: string) {
     let fileContent: Content = {};
     if (fs.existsSync(filePath)) {
       fileContent = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -53,4 +62,6 @@ export default class JennyAnalyzer implements Analyzer {
     const fileContent = this.generateJsonContent(courseInfo, filePath);
     return JSON.stringify(fileContent);
   }
+
+  private constructor() {}
 }

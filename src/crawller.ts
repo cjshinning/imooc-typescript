@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import superagent from 'superagent';
-import ChaneAnalyzer from './chanAnalyzer';
+import JennyAnalyzer from './jennyAnalyzer';
 
 export interface Analyzer {
   analyze: (html: string, filePath: string) => string;
@@ -10,16 +10,16 @@ export interface Analyzer {
 class Crawller {
   private filePath = path.resolve(__dirname, '../data/course.json');
 
-  async getRawHtml() {
+  private async getRawHtml() {
     const result = await superagent.get(this.url);
     return result.text;
   }
 
-  writeFile(content: string) {
+  private writeFile(content: string) {
     fs.writeFileSync(this.filePath, content);
   }
 
-  async initSpiderProcess() {
+  private async initSpiderProcess() {
     const html = await this.getRawHtml();
     const fileContent = this.analyzer.analyze(html, this.filePath);
     this.writeFile(fileContent);
@@ -32,5 +32,5 @@ class Crawller {
 
 const secret = 'x3b174jsx';
 const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
-const analyzer = new ChaneAnalyzer();
-new Crawller(url, analyzer);
+const analyzer = JennyAnalyzer.getInstance();
+const crawller = new Crawller(url, analyzer);
