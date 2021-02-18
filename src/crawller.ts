@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import superagent from 'superagent';
-import JennyAnalyzer from './jennyAnalyzer';
 
 export interface Analyzer {
   analyze: (html: string, filePath: string) => string;
@@ -30,7 +29,4 @@ class Crawller {
   }
 }
 
-const secret = 'x3b174jsx';
-const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
-const analyzer = JennyAnalyzer.getInstance();
-const crawller = new Crawller(url, analyzer);
+export default Crawller;
