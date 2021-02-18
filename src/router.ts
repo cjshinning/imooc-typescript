@@ -2,6 +2,12 @@ import { Router, Request, Response } from 'express';
 import Crawller from './crawller';
 import JennyAnalyzer from './jennyAnalyzer';
 
+interface RequestWithBody extends Request {
+  body: {
+    [key: string]: string | undefined;
+  };
+}
+
 const router = Router();
 
 router.get('/', (req: Request, res: Response) => {
@@ -17,7 +23,8 @@ router.get('/', (req: Request, res: Response) => {
   `);
 });
 
-router.post('/getDate', (req: Request, res: Response) => {
+router.post('/getDate', (req: RequestWithBody, res: Response) => {
+  const { password } = req.body;
   if (req.body.password === '123') {
     const secret = 'x3b174jsx';
     const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
@@ -25,7 +32,7 @@ router.post('/getDate', (req: Request, res: Response) => {
     new Crawller(url, analyzer);
     res.send('getData Success!');
   } else {
-    res.send('password Error!');
+    res.send(`${req.teacherName} password Error!`);
   }
 });
 
