@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
+import cookieSession from 'cookie-session';
 import router from './router';
 
 // 问题1：expres 库的类型定义文件 .d.ts 文件类型描述不准确
@@ -7,10 +8,14 @@ import router from './router';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use((req: Request, res: Response, next: NextFunction) => {
-  req.teacherName = 'dell';
-  next();
-});
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['student jenny'],
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  })
+);
+
 app.use(router);
 
 app.listen(7001, () => {
